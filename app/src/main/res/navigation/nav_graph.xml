@@ -7,12 +7,12 @@
 
     <fragment
         android:id="@+id/fragmentRandomCat"
-        android:name="com.msidorenko.cat_project.FragmentRandomCat"
+        android:name="com.msidorenko.cat_project.ui.FragmentRandomCat"
         android:label="fragment_random_cat"
         tools:layout="@layout/fragment_random_cat" />
     <fragment
         android:id="@+id/fragmentSearch"
-        android:name="com.msidorenko.cat_project.FragmentSearch"
+        android:name="com.msidorenko.cat_project.ui.FragmentSearch"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" />
 </navigation>
