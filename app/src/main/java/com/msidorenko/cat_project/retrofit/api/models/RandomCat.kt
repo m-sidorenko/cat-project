@@ -1,4 +1,4 @@
-package com.msidorenko.cat_project.data.models
+package com.msidorenko.cat_project.retrofit.api.models
 
 data class RandomCat(
     val id: String? = null,

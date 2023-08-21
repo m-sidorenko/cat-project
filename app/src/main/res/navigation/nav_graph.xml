@@ -6,13 +6,21 @@
     app:startDestination="@id/fragmentRandomCat">
 
     <fragment
+        android:id="@+id/fragmentSearch"
+        android:name="com.msidorenko.cat_project.ui.fragments.FragmentSearch"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_fragmentSearch_to_fragmentBreedInfo"
+            app:destination="@id/fragmentBreedInfo" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentBreedInfo"
+        android:name="com.msidorenko.cat_project.ui.fragments.FragmentBreedInfo"
+        android:label="FragmentBreedInfo" />
+    <fragment
         android:id="@+id/fragmentRandomCat"
-        android:name="com.msidorenko.cat_project.ui.FragmentRandomCat"
+        android:name="com.msidorenko.cat_project.ui.fragments.FragmentRandomCat"
         android:label="fragment_random_cat"
         tools:layout="@layout/fragment_random_cat" />
-    <fragment
-        android:id="@+id/fragmentSearch"
-        android:name="com.msidorenko.cat_project.ui.FragmentSearch"
-        android:label="fragment_search"
-        tools:layout="@layout/fragment_search" />
 </navigation>
