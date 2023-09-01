@@ -11,7 +11,7 @@ import com.msidorenko.cat_project.R
 import com.msidorenko.cat_project.adapters.AdapterSearchBreed
 import com.msidorenko.cat_project.databinding.FragmentSearchBinding
 import com.msidorenko.cat_project.ui.ActivityViewModel
-import com.msidorenko.CatActivity
+import com.msidorenko.cat_project.CatActivity
 
 class FragmentSearch : Fragment(R.layout.fragment_search) {
     private lateinit var binding: FragmentSearchBinding

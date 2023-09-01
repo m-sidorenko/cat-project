@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import com.msidorenko.cat_project.R
 import com.msidorenko.cat_project.databinding.FragmentBreedInfoPageBinding
 import com.msidorenko.cat_project.ui.ActivityViewModel
-import com.msidorenko.CatActivity
+import com.msidorenko.cat_project.CatActivity
 
 class FragmentBreedInfo : Fragment(R.layout.fragment_breed_info_page) {
     private lateinit var binding: FragmentBreedInfoPageBinding

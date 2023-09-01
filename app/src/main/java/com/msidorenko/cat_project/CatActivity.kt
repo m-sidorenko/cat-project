@@ -1,4 +1,4 @@
-package com.msidorenko
+package com.msidorenko.cat_project
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

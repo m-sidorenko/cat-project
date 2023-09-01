@@ -16,7 +16,7 @@ import com.msidorenko.cat_project.retrofit.RetrofitClient
 import com.msidorenko.cat_project.retrofit.api.CAT_BASE_URL
 import com.msidorenko.cat_project.retrofit.api.CatApiService
 import com.msidorenko.cat_project.ui.ActivityViewModel
-import com.msidorenko.CatActivity
+import com.msidorenko.cat_project.CatActivity
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
