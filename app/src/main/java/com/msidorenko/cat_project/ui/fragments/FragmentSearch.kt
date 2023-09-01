@@ -11,7 +11,7 @@ import com.msidorenko.cat_project.R
 import com.msidorenko.cat_project.adapters.AdapterSearchBreed
 import com.msidorenko.cat_project.databinding.FragmentSearchBinding
 import com.msidorenko.cat_project.ui.ActivityViewModel
-import com.msidorenko.cat_project.ui.MainActivity
+import com.msidorenko.CatActivity
 
 class FragmentSearch : Fragment(R.layout.fragment_search) {
     private lateinit var binding: FragmentSearchBinding
@@ -24,12 +24,13 @@ class FragmentSearch : Fragment(R.layout.fragment_search) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = (activity as MainActivity).mainActivityViewModel
+        viewModel = (activity as CatActivity).catActivityViewModel
         binding = FragmentSearchBinding.bind(view)
 
         binding.rvFragmentSearch.apply {
             adapter = searchAdapter
             layoutManager = LinearLayoutManager(view.context)
+
         }
 
         viewModel.breedsList.observe(viewLifecycleOwner, Observer {

@@ -3,25 +3,23 @@ package com.msidorenko.cat_project.retrofit.api.models
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-data class ImageWithBreedInfo(
+data class Image(
     @SerializedName("id")
     @Expose
-    private val id: String? = null,
+    val id: String? = null,
 
     @SerializedName("url")
     @Expose
-    private val url: String? = null,
-
-    @SerializedName("breeds")
-    @Expose
-    private val breeds: List<BreedInfo>? = null,
+    val url: String? = null,
 
     @SerializedName("width")
     @Expose
-    private val width: Int? = null,
+    val width: Int? = null,
 
     @SerializedName("height")
     @Expose
-    private val height: Int? = null,
+    val height: Int? = null,
 )
+
+
 
