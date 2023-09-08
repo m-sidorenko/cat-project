@@ -10,14 +10,14 @@ import com.msidorenko.cat_project.R
 import com.msidorenko.cat_project.retrofit.api.models.BreedInfo
 import com.msidorenko.cat_project.databinding.ItemCatBinding
 
-class AdapterSearchBreed() : RecyclerView.Adapter<AdapterSearchBreed.ViewHolderSearchBreed>() {
+class AdapterSearchBreed: RecyclerView.Adapter<AdapterSearchBreed.ViewHolderSearchBreed>() {
     var dataList = listOf<BreedInfo>()
     class ViewHolderSearchBreed(itemView: View) : RecyclerView.ViewHolder(itemView.rootView)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderSearchBreed {
         return ViewHolderSearchBreed(
             LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_cat, parent, false)
+                .inflate(R.layout.item_search, parent, false)
         )
     }
 

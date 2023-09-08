@@ -21,7 +21,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class FragmentRandomCat : Fragment(R.layout.fragment_random) {
+class FragmentRandomCatV2 : Fragment(R.layout.fragment_random) {
     private lateinit var binding: FragmentRandomCatBinding
     private lateinit var viewModel: CatViewModel
 

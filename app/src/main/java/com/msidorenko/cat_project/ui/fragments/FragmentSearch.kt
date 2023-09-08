@@ -10,12 +10,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.msidorenko.cat_project.R
 import com.msidorenko.cat_project.adapters.AdapterSearchBreed
 import com.msidorenko.cat_project.databinding.FragmentSearchBinding
-import com.msidorenko.cat_project.ui.ActivityViewModel
-import com.msidorenko.cat_project.CatActivity
+import com.msidorenko.cat_project.ui.CatViewModel
+import com.msidorenko.cat_project.ui.CatActivity
 
 class FragmentSearch : Fragment(R.layout.fragment_search) {
     private lateinit var binding: FragmentSearchBinding
-    private lateinit var viewModel: ActivityViewModel
+    private lateinit var viewModel: CatViewModel
     private val searchAdapter by lazy{ AdapterSearchBreed() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,6 +26,7 @@ class FragmentSearch : Fragment(R.layout.fragment_search) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = (activity as CatActivity).catActivityViewModel
         binding = FragmentSearchBinding.bind(view)
+
 
         binding.rvFragmentSearch.apply {
             adapter = searchAdapter

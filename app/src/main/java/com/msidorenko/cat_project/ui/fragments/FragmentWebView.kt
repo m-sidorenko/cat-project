@@ -17,7 +17,7 @@ class FragmentWebView : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_web_view, container, false)
+        return inflater.inflate(R.layout.fragment_webview, container, false)
     }
 
     companion object {

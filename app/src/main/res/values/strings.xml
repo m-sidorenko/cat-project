@@ -4,4 +4,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="return_button">return button</string>
     <string name="btn_heart_desc">a button to like a breed</string>
+    <string name="breed_image">breed_image</string>
+    <string name="refresh_button">refresh button</string>
 </resources>

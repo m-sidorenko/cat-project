@@ -15,7 +15,7 @@ interface LikedBreedDao {
     fun getAll(): Flow<List<LikedBreed>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    /*suspend*/ fun insert(newLikedCat: LikedBreed)
+    suspend fun insert(newLikedCat: LikedBreed)
 
     @Query("DELETE FROM liked_breeds_table")
     suspend fun deleteAll()

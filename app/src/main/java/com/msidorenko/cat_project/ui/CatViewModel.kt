@@ -3,15 +3,17 @@ package com.msidorenko.cat_project.ui
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.msidorenko.cat_project.repository.LikedBreedRepository
 import com.msidorenko.cat_project.retrofit.RetrofitClient
 import com.msidorenko.cat_project.retrofit.api.CAT_BASE_URL
 import com.msidorenko.cat_project.retrofit.api.CatApiService
 import com.msidorenko.cat_project.retrofit.api.models.BreedInfo
 import kotlinx.coroutines.launch
 
-class ActivityViewModel : ViewModel() {
+class CatViewModel(private val repository: LikedBreedRepository): ViewModel() {
     val breedsList: MutableLiveData<List<BreedInfo>> = MutableLiveData()
     val randomCatNumber: MutableLiveData<Int> = MutableLiveData()
+
 
     init {
         getBreeds()

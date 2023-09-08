@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey
 class LikedBreed(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    val id: Int?,
+    val id: Int = 0,
 
     @ColumnInfo(name = "breedId")
     val breedId: String

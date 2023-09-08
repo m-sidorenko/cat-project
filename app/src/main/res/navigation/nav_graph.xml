@@ -18,7 +18,7 @@
         android:id="@+id/fragmentRandomCat"
         android:name="com.msidorenko.cat_project.ui.fragments.FragmentRandomCat"
         android:label="fragment_random_cat"
-        tools:layout="@layout/fragment_random_cat" >
+        tools:layout="@layout/fragment_random" >
         <action
             android:id="@+id/action_fragmentRandomCat_to_fragmentWebView"
             app:destination="@id/fragmentWebView" />
@@ -27,5 +27,5 @@
         android:id="@+id/fragmentWebView"
         android:name="com.msidorenko.cat_project.ui.fragments.FragmentWebView"
         android:label="fragment_web_view"
-        tools:layout="@layout/fragment_web_view" />
+        tools:layout="@layout/fragment_webview" />
 </navigation>

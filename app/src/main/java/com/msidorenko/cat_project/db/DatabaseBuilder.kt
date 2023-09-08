@@ -17,6 +17,6 @@ object DatabaseBuilder {
         Room.databaseBuilder(
             context.applicationContext,
             LikedBreedsDatabase::class.java,
-            "example-db"
+            "favorite-db"
         ).build()
 }
