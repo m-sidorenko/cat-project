@@ -7,14 +7,14 @@
     tools:context=".ui.fragments.FragmentRandomCatV2">
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/qweqwe"
+        android:id="@+id/fragmentContainer_fragmentRandom"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout="@layout/fragment_breed_info"
+        tools:layout="@layout/fragment_webview"
         />
 
     <ProgressBar

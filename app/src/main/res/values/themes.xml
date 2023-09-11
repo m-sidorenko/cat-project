@@ -5,7 +5,9 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
-    <style name="Theme.Catproject" parent="Base.Theme.Catproject" />
+    <style name="Theme.Catproject" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:windowFullscreen">false</item>
+    </style>
 
     <style name="ThemeOverlay.Catproject.FullscreenContainer" parent="">
         <item name="fullscreenBackgroundColor">@color/light_blue_600</item>

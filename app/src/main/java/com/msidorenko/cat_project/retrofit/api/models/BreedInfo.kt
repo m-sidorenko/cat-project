@@ -2,7 +2,10 @@ package com.msidorenko.cat_project.retrofit.api.models
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import javax.annotation.processing.Generated
+import java.io.Serializable
 
+@Generated("jsonschema2pojo")
 data class BreedInfo(
     @SerializedName("weight")
     @Expose
@@ -16,17 +19,17 @@ data class BreedInfo(
     @Expose
     val name: String? = null,
 
-    @SerializedName("cfaUrl")
+    @SerializedName("cfa_url")
     @Expose
     val cfaUrl: String? = null,
 
-    @SerializedName("vetStreetUrl")
+    @SerializedName("vetstreet_url")
     @Expose
-    val vetStreetUrl: String? = null,
+    val vetstreetUrl: String? = null,
 
-    @SerializedName("vcaHospitalsUrl")
+    @SerializedName("vcahospitals_url")
     @Expose
-    val vcaHospitalsUrl: String? = null,
+    val vcahospitalsUrl: String? = null,
 
     @SerializedName("temperament")
     @Expose
@@ -36,11 +39,11 @@ data class BreedInfo(
     @Expose
     val origin: String? = null,
 
-    @SerializedName("countryCodes")
+    @SerializedName("country_codes")
     @Expose
     val countryCodes: String? = null,
 
-    @SerializedName("countryCode")
+    @SerializedName("country_code")
     @Expose
     val countryCode: String? = null,
 
@@ -48,7 +51,7 @@ data class BreedInfo(
     @Expose
     val description: String? = null,
 
-    @SerializedName("lifeSpan")
+    @SerializedName("life_span")
     @Expose
     val lifeSpan: String? = null,
 
@@ -60,7 +63,7 @@ data class BreedInfo(
     @Expose
     val lap: Int? = null,
 
-    @SerializedName("altNames")
+    @SerializedName("alt_names")
     @Expose
     val altNames: String? = null,
 
@@ -68,19 +71,19 @@ data class BreedInfo(
     @Expose
     val adaptability: Int? = null,
 
-    @SerializedName("affectionLevel")
+    @SerializedName("affection_level")
     @Expose
     val affectionLevel: Int? = null,
 
-    @SerializedName("childFriendly")
+    @SerializedName("child_friendly")
     @Expose
     val childFriendly: Int? = null,
 
-    @SerializedName("dogFriendly")
+    @SerializedName("dog_friendly")
     @Expose
     val dogFriendly: Int? = null,
 
-    @SerializedName("energyLevel")
+    @SerializedName("energy_level")
     @Expose
     val energyLevel: Int? = null,
 
@@ -88,7 +91,7 @@ data class BreedInfo(
     @Expose
     val grooming: Int? = null,
 
-    @SerializedName("healthIssues")
+    @SerializedName("health_issues")
     @Expose
     val healthIssues: Int? = null,
 
@@ -96,15 +99,15 @@ data class BreedInfo(
     @Expose
     val intelligence: Int? = null,
 
-    @SerializedName("sheddingLevel")
+    @SerializedName("shedding_level")
     @Expose
     val sheddingLevel: Int? = null,
 
-    @SerializedName("socialNeeds")
+    @SerializedName("social_needs")
     @Expose
     val socialNeeds: Int? = null,
 
-    @SerializedName("strangerFriendly")
+    @SerializedName("stranger_friendly")
     @Expose
     val strangerFriendly: Int? = null,
 
@@ -132,15 +135,15 @@ data class BreedInfo(
     @Expose
     val rex: Int? = null,
 
-    @SerializedName("suppressedTail")
+    @SerializedName("suppressed_tail")
     @Expose
     val suppressedTail: Int? = null,
 
-    @SerializedName("shortLegs")
+    @SerializedName("short_legs")
     @Expose
     val shortLegs: Int? = null,
 
-    @SerializedName("wikipediaUrl")
+    @SerializedName("wikipedia_url")
     @Expose
     val wikipediaUrl: String? = null,
 
@@ -148,9 +151,9 @@ data class BreedInfo(
     @Expose
     val hypoallergenic: Int? = null,
 
-    @SerializedName("referenceImageId")
+    @SerializedName("reference_image_id")
     @Expose
-    val referenceImageId: String? = null
+    val referenceImageId: String? = null,
 ) {
 
     data class Weight(

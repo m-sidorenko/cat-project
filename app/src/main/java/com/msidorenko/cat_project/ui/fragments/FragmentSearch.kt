@@ -6,17 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.msidorenko.cat_project.R
 import com.msidorenko.cat_project.adapters.AdapterSearchBreed
 import com.msidorenko.cat_project.databinding.FragmentSearchBinding
-import com.msidorenko.cat_project.ui.CatViewModel
 import com.msidorenko.cat_project.ui.CatActivity
+import com.msidorenko.cat_project.ui.CatViewModel
 
 class FragmentSearch : Fragment(R.layout.fragment_search) {
+
     private lateinit var binding: FragmentSearchBinding
     private lateinit var viewModel: CatViewModel
-    private val searchAdapter by lazy{ AdapterSearchBreed() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,11 +28,17 @@ class FragmentSearch : Fragment(R.layout.fragment_search) {
         viewModel = (activity as CatActivity).catActivityViewModel
         binding = FragmentSearchBinding.bind(view)
 
+        val searchAdapter = AdapterSearchBreed()
 
-        binding.rvFragmentSearch.apply {
+        searchAdapter.setOnItemClickListener { breedNumber ->
+            val bundle = Bundle()
+            bundle.putInt("breedNumber", breedNumber)
+            findNavController().navigate(R.id.action_fragmentSearch_to_fragmentBreedInfo, bundle)
+        }
+
+        binding.rvSearch.apply {
             adapter = searchAdapter
             layoutManager = LinearLayoutManager(view.context)
-
         }
 
         viewModel.breedsList.observe(viewLifecycleOwner, Observer {
@@ -39,8 +46,11 @@ class FragmentSearch : Fragment(R.layout.fragment_search) {
         })
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_search, container, false)
     }
 }

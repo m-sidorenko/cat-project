@@ -3,66 +3,111 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="140dp"
-        android:layout_height="140dp"
+        android:id="@+id/iv_breedInfo"
+        android:layout_width="0dp"
+        android:layout_height="256dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@drawable/paw" />
+        tools:srcCompat="@drawable/paw"
+        android:contentDescription="@string/breed_image" />
 
-    <TextView
-        android:id="@+id/tv_breedName"
-        android:layout_width="192dp"
-        android:layout_height="34dp"
-        android:layout_marginStart="160dp"
-        android:layout_marginTop="16dp"
-        android:text="Breed Name"
-        android:textSize="24sp"
-        android:textStyle="bold"
+    <LinearLayout
+        android:id="@+id/linear_breedInfo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_breedInfo">
 
-    <TextView
-        android:id="@+id/tv_contryOrigin"
-        android:layout_width="192dp"
-        android:layout_height="34dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="40dp"
-        android:text="origin country"
-        android:textSize="20sp"
-        android:textStyle="normal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_breedName" />
+        <TextView
+            android:id="@+id/tv_name_breedInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="Breed Name"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/tv_weight"
-        android:layout_width="192dp"
-        android:layout_height="34dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="40dp"
-        android:text="life span"
-        android:textSize="20sp"
-        android:textStyle="normal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_contryOrigin" />
+        <TextView
+            android:id="@+id/tv_weight_breedInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:text="life span"
+            android:textSize="20sp"
+            android:textStyle="normal" />
 
-    <TextView
-        android:id="@+id/tv_description"
-        android:layout_width="356dp"
-        android:layout_height="452dp"
-        android:text="Description"
-        android:textSize="20sp"
-        android:textStyle="normal"
+        <TextView
+            android:id="@+id/tv_origin_breedInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:text="origin country"
+            android:textSize="20sp"
+            android:textStyle="normal" />
+
+        <TextView
+            android:id="@+id/tv_descLabel_breedInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="Description"
+            android:textSize="20sp"
+            android:textStyle="italic" />
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/scroll_breedInfo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/linear_breedInfo">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_description_breedInfo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Description"
+                android:textSize="20sp"
+                android:textStyle="normal" />
+
+            <Button
+                android:id="@+id/btn_openWeb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:enabled="false"
+                android:text="read more in web"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

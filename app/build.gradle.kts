@@ -2,7 +2,11 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
+
+    // for args in navigation
+    id("androidx.navigation.safeargs")
 }
+
 
 android {
     namespace = "com.msidorenko.cat_project"

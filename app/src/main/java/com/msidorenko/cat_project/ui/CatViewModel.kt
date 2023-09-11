@@ -25,6 +25,7 @@ class CatViewModel(private val repository: LikedBreedRepository): ViewModel() {
             val response = retrofit.getBreedList()
 
             if (response.isSuccessful) {
+                println("RAW " + response.raw().body)
                 response.body()?.let { listOfBreeds ->
                     breedsList.postValue(listOfBreeds)
 

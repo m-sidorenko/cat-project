@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/fragmentRandomCat">
+    app:startDestination="@id/fragmentRandomCatV2">
 
     <fragment
         android:id="@+id/fragmentSearch"
@@ -11,21 +11,38 @@
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" >
         <action
-            android:id="@+id/action_fragmentSearch_to_fragmentWebView"
-            app:destination="@id/fragmentWebView" />
+            android:id="@+id/action_fragmentSearch_to_fragmentBreedInfo"
+            app:destination="@id/fragmentBreedInfo" />
     </fragment>
     <fragment
-        android:id="@+id/fragmentRandomCat"
-        android:name="com.msidorenko.cat_project.ui.fragments.FragmentRandomCat"
-        android:label="fragment_random_cat"
-        tools:layout="@layout/fragment_random" >
+        android:id="@+id/fragmentRandomCatV2"
+        android:name="com.msidorenko.cat_project.ui.fragments.FragmentRandomCatV2"
+        android:label="fragment_randomV2"
+        tools:layout="@layout/fragment_random_v2" >
         <action
-            android:id="@+id/action_fragmentRandomCat_to_fragmentWebView"
+            android:id="@+id/action_fragmentRandomCatV2_to_fragmentWebView"
             app:destination="@id/fragmentWebView" />
+        <action
+            android:id="@+id/action_fragmentRandomCatV2_to_fragmentBreedInfo"
+            app:destination="@id/fragmentBreedInfo" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentBreedInfo"
+        android:name="com.msidorenko.cat_project.ui.fragments.FragmentBreedInfo"
+        android:label="FragmentBreedInfo" >
+        <action
+            android:id="@+id/action_fragmentBreedInfo_to_fragmentWebView"
+            app:destination="@id/fragmentWebView" />
+        <argument android:name="breedNumber"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/fragmentWebView"
         android:name="com.msidorenko.cat_project.ui.fragments.FragmentWebView"
-        android:label="fragment_web_view"
-        tools:layout="@layout/fragment_webview" />
+        android:label="fragment_webview"
+        tools:layout="@layout/fragment_webview" >
+        <argument
+            android:name="url"
+            app:argType="string" />
+    </fragment>
 </navigation>

@@ -5,9 +5,9 @@ import com.msidorenko.cat_project.db.LikedBreedsDatabase
 import com.msidorenko.cat_project.db.entity.LikedBreed
 import kotlinx.coroutines.flow.Flow
 
-class LikedBreedRepository(private val database: LikedBreedsDatabase) {
+class LikedBreedRepository(/*private val database: LikedBreedsDatabase*/) {
 
-    private val dao = database.likedCatDao()
+    /*private val dao = database.likedCatDao()
 
     fun getAll(): Flow<List<LikedBreed>> = dao.getAll()
 
@@ -21,5 +21,5 @@ class LikedBreedRepository(private val database: LikedBreedsDatabase) {
 
     suspend fun delete(breedID: String) {
         dao.delete(breedID)
-    }
+    }*/
 }
