@@ -6,9 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
@@ -17,11 +15,9 @@ import com.msidorenko.cat_project.databinding.FragmentBreedInfoBinding
 import com.msidorenko.cat_project.retrofit.RetrofitClient
 import com.msidorenko.cat_project.retrofit.api.CAT_BASE_URL
 import com.msidorenko.cat_project.retrofit.api.CatApiService
-import com.msidorenko.cat_project.retrofit.api.models.ImageWithShortBreedInfo
-import com.msidorenko.cat_project.ui.CatViewModel
 import com.msidorenko.cat_project.ui.CatActivity
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.delay
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class FragmentBreedInfo : Fragment(R.layout.fragment_breed_info) {
@@ -42,6 +38,12 @@ class FragmentBreedInfo : Fragment(R.layout.fragment_breed_info) {
                 tvWeightBreedInfo.text = currentBreedInformation.weight!!.metric
                 tvOriginBreedInfo.text = currentBreedInformation.origin
                 tvDescriptionBreedInfo.text = currentBreedInformation.description
+
+                btnLikeBreedInfo.setOnClickListener {
+                    CoroutineScope(Dispatchers.IO).launch {
+                        viewModel.likeBreed(currentBreedInformation)
+                    }
+                }
 
                 // --------- BTN
                 val bundle = Bundle()

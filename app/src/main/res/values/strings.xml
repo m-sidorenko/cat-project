@@ -6,4 +6,5 @@
     <string name="btn_heart_desc">a button to like a breed</string>
     <string name="breed_image">breed_image</string>
     <string name="refresh_button">refresh button</string>
+    <string name="like_this_breed">like this breed</string>
 </resources>

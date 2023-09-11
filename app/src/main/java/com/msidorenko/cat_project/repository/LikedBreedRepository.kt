@@ -1,25 +1,18 @@
 package com.msidorenko.cat_project.repository
 
-import com.msidorenko.cat_project.db.LikedBreedDao
-import com.msidorenko.cat_project.db.LikedBreedsDatabase
-import com.msidorenko.cat_project.db.entity.LikedBreed
-import kotlinx.coroutines.flow.Flow
+import androidx.lifecycle.LiveData
+import com.msidorenko.cat_project.db.LikedBreedDatabase
+import com.msidorenko.cat_project.db.LikedBreed
 
-class LikedBreedRepository(/*private val database: LikedBreedsDatabase*/) {
+class LikedBreedRepository(database: LikedBreedDatabase) {
 
-    /*private val dao = database.likedCatDao()
+    private val dao = database.getDao()
 
-    fun getAll(): Flow<List<LikedBreed>> = dao.getAll()
+    fun getAll(): List<LikedBreed> = dao.getAll()
 
-    suspend fun addNew(newLikedBreed: LikedBreed) {
-        dao.insert(newLikedBreed)
-    }
+    fun addNew(newLikedBreed: LikedBreed) = dao.insert(newLikedBreed)
 
-    suspend fun deleteAll() {
-        dao.deleteAll()
-    }
+//    suspend fun deleteAll() = dao.deleteAll()
 
-    suspend fun delete(breedID: String) {
-        dao.delete(breedID)
-    }*/
+//    suspend fun delete(breedID: String) = dao.delete(breedID)
 }

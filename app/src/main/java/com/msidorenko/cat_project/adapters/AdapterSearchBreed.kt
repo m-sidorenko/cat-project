@@ -53,6 +53,7 @@ class AdapterSearchBreed : RecyclerView.Adapter<AdapterSearchBreed.ViewHolderSea
 
         binding.btnHeart.setOnClickListener {
             Log.i("MY TAG", "HEART BUTTON")
+
         }
 
         holder.itemView.setOnClickListener {

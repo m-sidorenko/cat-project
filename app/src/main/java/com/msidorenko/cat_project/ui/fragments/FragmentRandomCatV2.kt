@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -13,7 +14,11 @@ import com.msidorenko.cat_project.databinding.FragmentRandomV2Binding
 import com.msidorenko.cat_project.retrofit.api.models.BreedInfo
 import com.msidorenko.cat_project.ui.CatActivity
 import com.msidorenko.cat_project.ui.CatViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 
 
 class FragmentRandomCatV2 : Fragment(R.layout.fragment_random_v2) {
@@ -37,6 +42,17 @@ class FragmentRandomCatV2 : Fragment(R.layout.fragment_random_v2) {
 //        ft.commit()
 
         binding.fabFragmentRandomCat.setOnClickListener {
+
+            CoroutineScope(Dispatchers.IO).launch {
+                val a = viewModel.getAllBreed()
+                CoroutineScope(Dispatchers.Main).launch {
+                    Toast.makeText(
+                        view.context, a.toString(),
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }
+
             if (!viewModel.breedsList.value.isNullOrEmpty()) {
                 val listSize = viewModel.breedsList.value?.size
                 if (listSize != null) {

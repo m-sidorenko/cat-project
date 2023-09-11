@@ -32,11 +32,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_16
+        targetCompatibility = JavaVersion.VERSION_16
     }
     kotlinOptions {
-        jvmTarget = "17"
+        jvmTarget = "16"
     }
     buildFeatures{
         viewBinding = true
@@ -59,20 +59,24 @@ dependencies {
     implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
 
     // Navigation Components
-    implementation ("androidx.navigation:navigation-fragment-ktx:2.7.0")
-    implementation ("androidx.navigation:navigation-ui-ktx:2.7.0")
+    implementation ("androidx.navigation:navigation-fragment-ktx:2.7.1")
+    implementation ("androidx.navigation:navigation-ui-ktx:2.7.1")
 
     // Glide
     implementation ("com.github.bumptech.glide:glide:4.15.1")
-    kapt ("com.github.bumptech.glide:compiler:4.12.0")
+    kapt ("com.github.bumptech.glide:compiler:4.15.1")
 
     // Retrofit
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation ("com.squareup.okhttp3:logging-interceptor:4.7.2")
 
+    // coroutines
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.3")
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.3")
+
     // Room
-    implementation ("androidx.room:room-ktx:2.3.0")
-    annotationProcessor ("androidx.room:room-compiler:2.3.0")
-    androidTestImplementation ("androidx.room:room-testing:2.3.0")
+    implementation ("androidx.room:room-ktx:2.5.2")
+    implementation ("androidx.room:room-runtime:2.5.2")
+    kapt ("androidx.room:room-compiler:2.5.2")
 }

@@ -19,6 +19,8 @@ class FragmentSearch : Fragment(R.layout.fragment_search) {
     private lateinit var binding: FragmentSearchBinding
     private lateinit var viewModel: CatViewModel
 
+    private val searchAdapter = AdapterSearchBreed()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -27,19 +29,7 @@ class FragmentSearch : Fragment(R.layout.fragment_search) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = (activity as CatActivity).catActivityViewModel
         binding = FragmentSearchBinding.bind(view)
-
-        val searchAdapter = AdapterSearchBreed()
-
-        searchAdapter.setOnItemClickListener { breedNumber ->
-            val bundle = Bundle()
-            bundle.putInt("breedNumber", breedNumber)
-            findNavController().navigate(R.id.action_fragmentSearch_to_fragmentBreedInfo, bundle)
-        }
-
-        binding.rvSearch.apply {
-            adapter = searchAdapter
-            layoutManager = LinearLayoutManager(view.context)
-        }
+        setupRV(view)
 
         viewModel.breedsList.observe(viewLifecycleOwner, Observer {
             searchAdapter.dataList = it
@@ -52,5 +42,18 @@ class FragmentSearch : Fragment(R.layout.fragment_search) {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_search, container, false)
+    }
+
+    private fun setupRV(view: View){
+        searchAdapter.setOnItemClickListener { breedNumber ->
+            val bundle = Bundle()
+            bundle.putInt("breedNumber", breedNumber)
+            findNavController().navigate(R.id.action_fragmentSearch_to_fragmentBreedInfo, bundle)
+        }
+
+        binding.rvSearch.apply {
+            adapter = searchAdapter
+            layoutManager = LinearLayoutManager(view.context)
+        }
     }
 }

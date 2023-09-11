@@ -1,9 +1,10 @@
 package com.msidorenko.cat_project.retrofit
 
 import com.google.gson.GsonBuilder
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 
 object RetrofitClient {
     private var retrofit: Retrofit? = null
@@ -12,18 +13,18 @@ object RetrofitClient {
         .setLenient()
         .create()
 
-/*    val loggerInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+    private val loggerInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
 
-    val client = OkHttpClient.Builder()
+    private val client = OkHttpClient.Builder()
         .addInterceptor(loggerInterceptor)
-        .build()*/
+        .build()
 
     fun getClient(baseUrl: String): Retrofit {
         if (retrofit == null) {
             retrofit = Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .addConverterFactory(GsonConverterFactory.create(gson))
-//                .client(client)
+                .client(client)
                 .build()
         }
         return retrofit!!
