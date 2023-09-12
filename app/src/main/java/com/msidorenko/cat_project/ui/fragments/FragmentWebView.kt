@@ -30,7 +30,6 @@ class FragmentWebView : Fragment() {
             webViewClient = WebViewClient()
             loadUrl(args.url)
         }
-
     }
 
     override fun onCreateView(
@@ -39,11 +38,5 @@ class FragmentWebView : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_webview, container, false)
-    }
-
-    companion object {
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            FragmentWebView()
     }
 }

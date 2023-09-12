@@ -1,26 +1,37 @@
 package com.msidorenko.cat_project.adapters
 
-import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.OnClickListener
 import android.view.ViewGroup
-import androidx.navigation.NavController
+import androidx.recyclerview.widget.AsyncListDiffer
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.msidorenko.cat_project.R
 import com.msidorenko.cat_project.databinding.ItemSearchBinding
 import com.msidorenko.cat_project.retrofit.RetrofitClient
-import com.msidorenko.cat_project.retrofit.api.CAT_BASE_URL
-import com.msidorenko.cat_project.retrofit.api.CatApiService
 import com.msidorenko.cat_project.retrofit.api.models.BreedInfo
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class AdapterSearchBreed : RecyclerView.Adapter<AdapterSearchBreed.ViewHolderSearchBreed>() {
-    var dataList = listOf<BreedInfo>()
+class AdapterSearch : RecyclerView.Adapter<AdapterSearch.ViewHolderSearchBreed>() {
+
+    private val differCallback = object : DiffUtil.ItemCallback<BreedInfo>() {
+        override fun areItemsTheSame(oldItem: BreedInfo, newItem: BreedInfo): Boolean {
+            return oldItem.id == newItem.id
+        }
+
+        override fun areContentsTheSame(oldItem: BreedInfo, newItem: BreedInfo): Boolean {
+            return oldItem == newItem
+        }
+    }
+
+    private val differ = AsyncListDiffer(this, differCallback)
+
+    fun addItems(newItems: List<BreedInfo>) = differ.submitList(newItems)
+    fun getItems(): MutableList<BreedInfo> = differ.currentList
 
     class ViewHolderSearchBreed(itemView: View) : RecyclerView.ViewHolder(itemView.rootView)
 
@@ -28,15 +39,14 @@ class AdapterSearchBreed : RecyclerView.Adapter<AdapterSearchBreed.ViewHolderSea
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderSearchBreed {
         return ViewHolderSearchBreed(
-            LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_search, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.item_search, parent, false)
         )
     }
 
-    override fun getItemCount(): Int = dataList.size
+    override fun getItemCount(): Int = differ.currentList.size
 
     override fun onBindViewHolder(holder: ViewHolderSearchBreed, position: Int) {
-        val item = dataList[position]
+        val item = differ.currentList[position]
         val binding = ItemSearchBinding.bind(holder.itemView)
 
         binding.tvBreedNameItemCat.text = item.name
@@ -61,7 +71,7 @@ class AdapterSearchBreed : RecyclerView.Adapter<AdapterSearchBreed.ViewHolderSea
             onItemClickListener(position)
         }
 
-        val retrofit = RetrofitClient.getClient(CAT_BASE_URL).create(CatApiService::class.java)
+        val retrofit = RetrofitClient.instance
 
         CoroutineScope(Dispatchers.Main).launch {
             val referenceImageId = item.referenceImageId

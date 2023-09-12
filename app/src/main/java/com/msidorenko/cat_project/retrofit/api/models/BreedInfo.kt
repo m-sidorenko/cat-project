@@ -2,10 +2,7 @@ package com.msidorenko.cat_project.retrofit.api.models
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-import javax.annotation.processing.Generated
-import java.io.Serializable
 
-@Generated("jsonschema2pojo")
 data class BreedInfo(
     @SerializedName("weight")
     @Expose

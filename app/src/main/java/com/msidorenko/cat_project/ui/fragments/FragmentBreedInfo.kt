@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -16,12 +17,16 @@ import com.msidorenko.cat_project.retrofit.RetrofitClient
 import com.msidorenko.cat_project.retrofit.api.CAT_BASE_URL
 import com.msidorenko.cat_project.retrofit.api.CatApiService
 import com.msidorenko.cat_project.ui.CatActivity
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class FragmentBreedInfo : Fragment(R.layout.fragment_breed_info) {
     private val args: FragmentBreedInfoArgs by navArgs()
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -31,7 +36,13 @@ class FragmentBreedInfo : Fragment(R.layout.fragment_breed_info) {
         val viewModel = (activity as CatActivity).catActivityViewModel
         val binding = FragmentBreedInfoBinding.bind(view)
 
-        val currentBreedInformation = viewModel.breedsList.value?.get(args.breedNumber)
+        val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
+            CoroutineScope(Dispatchers.Main).launch {
+                Toast.makeText(view.context, throwable.message, Toast.LENGTH_LONG).show()
+            }
+        }
+
+        val currentBreedInformation = viewModel.breedList.value?.get(args.breedNumber)
         if (currentBreedInformation != null) {
             binding.apply {
                 tvNameBreedInfo.text = currentBreedInformation.name
@@ -40,7 +51,7 @@ class FragmentBreedInfo : Fragment(R.layout.fragment_breed_info) {
                 tvDescriptionBreedInfo.text = currentBreedInformation.description
 
                 btnLikeBreedInfo.setOnClickListener {
-                    CoroutineScope(Dispatchers.IO).launch {
+                    CoroutineScope(Dispatchers.IO).launch(exceptionHandler) {
                         viewModel.likeBreed(currentBreedInformation)
                     }
                 }
@@ -65,8 +76,7 @@ class FragmentBreedInfo : Fragment(R.layout.fragment_breed_info) {
                 }
 
                 // --------- IMAGE
-                val retrofit =
-                    RetrofitClient.getClient(CAT_BASE_URL).create(CatApiService::class.java)
+                val retrofit = RetrofitClient.instance
 
                 lifecycleScope.launch {
                     val referenceImageId = currentBreedInformation.referenceImageId

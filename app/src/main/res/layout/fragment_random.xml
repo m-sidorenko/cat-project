@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.FragmentRandomCatV2">
+    tools:context=".ui.fragments.FragmentRandomCat">
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainer_fragmentRandom"

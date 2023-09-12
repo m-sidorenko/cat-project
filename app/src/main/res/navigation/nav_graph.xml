@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/fragmentRandomCatV2">
+    app:startDestination="@id/fragmentRandomCat">
 
     <fragment
         android:id="@+id/fragmentSearch"
@@ -15,15 +15,15 @@
             app:destination="@id/fragmentBreedInfo" />
     </fragment>
     <fragment
-        android:id="@+id/fragmentRandomCatV2"
-        android:name="com.msidorenko.cat_project.ui.fragments.FragmentRandomCatV2"
+        android:id="@+id/fragmentRandomCat"
+        android:name="com.msidorenko.cat_project.ui.fragments.FragmentRandomCat"
         android:label="fragment_randomV2"
-        tools:layout="@layout/fragment_random_v2" >
+        tools:layout="@layout/fragment_random" >
         <action
-            android:id="@+id/action_fragmentRandomCatV2_to_fragmentWebView"
+            android:id="@+id/action_fragmentRandomCat_to_fragmentWebView"
             app:destination="@id/fragmentWebView" />
         <action
-            android:id="@+id/action_fragmentRandomCatV2_to_fragmentBreedInfo"
+            android:id="@+id/action_fragmentRandomCat_to_fragmentBreedInfo"
             app:destination="@id/fragmentBreedInfo" />
     </fragment>
     <fragment
@@ -33,7 +33,8 @@
         <action
             android:id="@+id/action_fragmentBreedInfo_to_fragmentWebView"
             app:destination="@id/fragmentWebView" />
-        <argument android:name="breedNumber"
+        <argument
+            android:name="breedNumber"
             app:argType="integer" />
     </fragment>
     <fragment
@@ -44,5 +45,17 @@
         <argument
             android:name="url"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentLiked"
+        android:name="com.msidorenko.cat_project.ui.fragments.FragmentLiked"
+        android:label="fragment_liked"
+        tools:layout="@layout/fragment_liked" >
+        <action
+            android:id="@+id/action_fragmentLiked_to_fragmentBreedInfo"
+            app:destination="@id/fragmentBreedInfo" />
+        <action
+            android:id="@+id/action_fragmentLiked_to_fragmentWebView"
+            app:destination="@id/fragmentWebView" />
     </fragment>
 </navigation>

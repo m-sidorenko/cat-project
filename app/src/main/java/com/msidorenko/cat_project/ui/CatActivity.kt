@@ -11,8 +11,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.msidorenko.cat_project.databinding.MainLayoutBinding
 import com.msidorenko.cat_project.db.LikedBreedDatabase
-import com.msidorenko.cat_project.repository.LikedBreedRepository
-import com.msidorenko.cat_project.ui.fragments.FragmentRandomCatV2
+import com.msidorenko.cat_project.repository.Repository
+import com.msidorenko.cat_project.ui.fragments.FragmentRandomCat
 
 class CatActivity : AppCompatActivity() {
 
@@ -22,17 +22,14 @@ class CatActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        val db = LikedBreedDatabase(this@CatActivity)
-
-        val repository = LikedBreedRepository(db)
+        val repository = Repository(LikedBreedDatabase(this@CatActivity))
 
         catActivityViewModel = ViewModelProvider(
-            this@CatActivity,
-            CatViewModelProvider(repository)
+            this@CatActivity, CatViewModelProvider(repository)
         ).get(CatViewModel::class.java)
 
         val navController =
-            binding.fragmentContainerView.getFragment<FragmentRandomCatV2>().findNavController()
+            binding.fragmentContainerView.getFragment<FragmentRandomCat>().findNavController()
 
         binding.bottomNavigationView.setupWithNavController(navController)
     }

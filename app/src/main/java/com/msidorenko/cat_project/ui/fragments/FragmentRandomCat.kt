@@ -1,6 +1,5 @@
 package com.msidorenko.cat_project.ui.fragments
 
-import android.os.BaseBundle
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,21 +7,17 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import com.msidorenko.cat_project.R
-import com.msidorenko.cat_project.databinding.FragmentRandomV2Binding
-import com.msidorenko.cat_project.retrofit.api.models.BreedInfo
+import com.msidorenko.cat_project.databinding.FragmentRandomBinding
 import com.msidorenko.cat_project.ui.CatActivity
 import com.msidorenko.cat_project.ui.CatViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 
 
-class FragmentRandomCatV2 : Fragment(R.layout.fragment_random_v2) {
-    private lateinit var binding: FragmentRandomV2Binding
+class FragmentRandomCat : Fragment(R.layout.fragment_random) {
+    private lateinit var binding: FragmentRandomBinding
     private lateinit var viewModel: CatViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,18 +28,12 @@ class FragmentRandomCatV2 : Fragment(R.layout.fragment_random_v2) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = (activity as CatActivity).catActivityViewModel
 
-        binding = FragmentRandomV2Binding.bind(view)
-
-//        val fragmentBreedInfo= FragmentBreedInfo()
-//        val ft = childFragmentManager.beginTransaction()
-//        fragmentBreedInfo.arguments = Bundle().apply { putInt("breedNumber", viewModel.randomCatNumber.value!!.toInt()) }
-//        ft.replace(R.id.fragmentContainer_fragmentRandom, fragmentBreedInfo)
-//        ft.commit()
+        binding = FragmentRandomBinding.bind(view)
 
         binding.fabFragmentRandomCat.setOnClickListener {
 
             CoroutineScope(Dispatchers.IO).launch {
-                val a = viewModel.getAllBreed()
+                val a = viewModel.getAllLiked()
                 CoroutineScope(Dispatchers.Main).launch {
                     Toast.makeText(
                         view.context, a.toString(),
@@ -53,8 +42,8 @@ class FragmentRandomCatV2 : Fragment(R.layout.fragment_random_v2) {
                 }
             }
 
-            if (!viewModel.breedsList.value.isNullOrEmpty()) {
-                val listSize = viewModel.breedsList.value?.size
+            if (!viewModel.breedList.value.isNullOrEmpty()) {
+                val listSize = viewModel.breedList.value?.size
                 if (listSize != null) {
                     viewModel.randomCatNumber.postValue((0 until listSize).random())
                 }
@@ -95,6 +84,6 @@ class FragmentRandomCatV2 : Fragment(R.layout.fragment_random_v2) {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_random_v2, container, false)
+        return inflater.inflate(R.layout.fragment_random, container, false)
     }
 }

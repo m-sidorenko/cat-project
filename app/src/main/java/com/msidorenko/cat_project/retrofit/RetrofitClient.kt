@@ -1,6 +1,8 @@
 package com.msidorenko.cat_project.retrofit
 
 import com.google.gson.GsonBuilder
+import com.msidorenko.cat_project.retrofit.api.CAT_BASE_URL
+import com.msidorenko.cat_project.retrofit.api.CatApiService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -19,7 +21,7 @@ object RetrofitClient {
         .addInterceptor(loggerInterceptor)
         .build()
 
-    fun getClient(baseUrl: String): Retrofit {
+    private fun getClient(baseUrl: String): Retrofit {
         if (retrofit == null) {
             retrofit = Retrofit.Builder()
                 .baseUrl(baseUrl)
@@ -29,4 +31,6 @@ object RetrofitClient {
         }
         return retrofit!!
     }
+
+    val instance: CatApiService = getClient(CAT_BASE_URL).create(CatApiService::class.java)
 }
