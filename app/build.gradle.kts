@@ -62,9 +62,8 @@ dependencies {
     implementation ("androidx.navigation:navigation-fragment-ktx:2.7.1")
     implementation ("androidx.navigation:navigation-ui-ktx:2.7.1")
 
-    // Glide
-    implementation ("com.github.bumptech.glide:glide:4.15.1")
-    kapt ("com.github.bumptech.glide:compiler:4.15.1")
+    // COIL
+    implementation("io.coil-kt:coil:2.4.0")
 
     // Retrofit
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")

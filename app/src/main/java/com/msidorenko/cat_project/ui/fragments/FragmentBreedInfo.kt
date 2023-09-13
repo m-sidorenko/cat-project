@@ -10,12 +10,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.bumptech.glide.Glide
+import coil.load
+import coil.transform.CircleCropTransformation
 import com.msidorenko.cat_project.R
 import com.msidorenko.cat_project.databinding.FragmentBreedInfoBinding
 import com.msidorenko.cat_project.retrofit.RetrofitClient
-import com.msidorenko.cat_project.retrofit.api.CAT_BASE_URL
-import com.msidorenko.cat_project.retrofit.api.CatApiService
 import com.msidorenko.cat_project.ui.CatActivity
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
@@ -24,8 +23,6 @@ import kotlinx.coroutines.launch
 
 class FragmentBreedInfo : Fragment(R.layout.fragment_breed_info) {
     private val args: FragmentBreedInfoArgs by navArgs()
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -86,22 +83,27 @@ class FragmentBreedInfo : Fragment(R.layout.fragment_breed_info) {
                         if (result.isSuccessful) {
                             val url = result.body()?.url
                             if (url != null) {
-                                Glide.with(view.context).load(url).into(binding.ivBreedInfo)
+                                binding.ivBreedInfo.load(url) {
+                                    transformations(CircleCropTransformation())
+                                }
+                                Log.i("myTag", "imageUrl: $url")
+//                                Glide.with(view.context).load(url).into(binding.ivBreedInfo)
                             }
                         } else {
-                            Glide.with(view.context).load(R.drawable.fish_24)
-                                .into(binding.ivBreedInfo)
+                            binding.ivBreedInfo.load(R.drawable.fish_24) {
+                                transformations(CircleCropTransformation())
+                            }
                             Log.e("myTag", "retrofit.getImageById isn't successful")
                         }
                     } else {
-                        Glide.with(view.context).load(R.drawable.fish_24).into(binding.ivBreedInfo)
+                        binding.ivBreedInfo.load(R.drawable.fish_24) {
+                            transformations(CircleCropTransformation())
+                        }
                         Log.e("myTag", "result are not successful")
                     }
                 }
             }
-
         }
-
         // TODO: РАБОТУ С ПОДПИСКОЙ НА ЗНАЧЕНИЕ УБРАТЬ И ПЕРЕНЕСТИ В randomCat И ПЕРЕДЕДАТЬ
 
         /*var job: Job? = null

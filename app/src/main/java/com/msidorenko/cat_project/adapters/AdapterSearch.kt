@@ -7,9 +7,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
+import coil.load
+import coil.transform.CircleCropTransformation
 import com.msidorenko.cat_project.R
-import com.msidorenko.cat_project.databinding.ItemSearchBinding
+import com.msidorenko.cat_project.databinding.ItemBinding
 import com.msidorenko.cat_project.retrofit.RetrofitClient
 import com.msidorenko.cat_project.retrofit.api.models.BreedInfo
 import kotlinx.coroutines.CoroutineScope
@@ -39,7 +40,7 @@ class AdapterSearch : RecyclerView.Adapter<AdapterSearch.ViewHolderSearchBreed>(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderSearchBreed {
         return ViewHolderSearchBreed(
-            LayoutInflater.from(parent.context).inflate(R.layout.item_search, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.item, parent, false)
         )
     }
 
@@ -47,7 +48,7 @@ class AdapterSearch : RecyclerView.Adapter<AdapterSearch.ViewHolderSearchBreed>(
 
     override fun onBindViewHolder(holder: ViewHolderSearchBreed, position: Int) {
         val item = differ.currentList[position]
-        val binding = ItemSearchBinding.bind(holder.itemView)
+        val binding = ItemBinding.bind(holder.itemView)
 
         binding.tvBreedNameItemCat.text = item.name
 
@@ -59,12 +60,6 @@ class AdapterSearch : RecyclerView.Adapter<AdapterSearch.ViewHolderSearchBreed>(
         binding.tvWeightItemCat.text = weight
 
         binding.tvOriginCountryItemCat.text = "origin country: " + item.origin
-
-
-        binding.btnHeart.setOnClickListener {
-            Log.i("MY TAG", "HEART BUTTON")
-
-        }
 
         holder.itemView.setOnClickListener {
             Log.i("MY TAG", "on click!")
@@ -79,14 +74,21 @@ class AdapterSearch : RecyclerView.Adapter<AdapterSearch.ViewHolderSearchBreed>(
                 val result = retrofit.getImageById(referenceImageId)
                 if (result.isSuccessful) {
                     val url = result.body()?.url
+                    Log.e("GLIDE!!!!!", "$url")
                     if (url != null) {
-                        Glide.with(holder.itemView.context).load(url).circleCrop().into(binding.ivItemCat)
+                        binding.ivItemCat.load(url) {
+                            transformations(CircleCropTransformation())
+                        }
                     }
                 } else {
-                    Glide.with(holder.itemView).load(R.drawable.fish_24).circleCrop().into(binding.ivItemCat)
+                    binding.ivItemCat.load(R.drawable.fish_24) {
+                        transformations(CircleCropTransformation())
+                    }
                 }
             } else {
-                Glide.with(holder.itemView).load(R.drawable.fish_24).circleCrop().into(binding.ivItemCat)
+                binding.ivItemCat.load(R.drawable.fish_24) {
+                    transformations(CircleCropTransformation())
+                }
             }
         }
     }

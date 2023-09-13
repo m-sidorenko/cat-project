@@ -9,7 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.msidorenko.cat_project.R
-import com.msidorenko.cat_project.adapters.AdapterSearch
+import com.msidorenko.cat_project.adapters.AdapterLiked
 import com.msidorenko.cat_project.databinding.FragmentLikedBinding
 import com.msidorenko.cat_project.ui.CatActivity
 import com.msidorenko.cat_project.ui.CatViewModel
@@ -21,7 +21,7 @@ class FragmentLiked : Fragment(R.layout.fragment_liked) {
     private lateinit var binding: FragmentLikedBinding
     private lateinit var viewModel: CatViewModel
 
-    private val searchAdapter = AdapterSearch()
+    private val adapterLiked = AdapterLiked()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,8 +39,8 @@ class FragmentLiked : Fragment(R.layout.fragment_liked) {
             }
         }
 
-        viewModel.breedList.observe(viewLifecycleOwner, Observer {
-            searchAdapter.addItems(it)
+        viewModel.getAllLiked().observe(viewLifecycleOwner, Observer {
+            adapterLiked.addItems(it)
         })
     }
 
@@ -54,14 +54,14 @@ class FragmentLiked : Fragment(R.layout.fragment_liked) {
     }
 
     private fun setupRV(view: View){
-        searchAdapter.setOnItemClickListener { breedNumber ->
+        adapterLiked.setOnItemClickListener { breedNumber ->
             val bundle = Bundle()
             bundle.putInt("breedNumber", breedNumber)
             findNavController().navigate(R.id.action_fragmentLiked_to_fragmentBreedInfo, bundle)
         }
 
         binding.rvLiked.apply {
-            adapter = searchAdapter
+            adapter = adapterLiked
             layoutManager = LinearLayoutManager(view.context)
         }
     }

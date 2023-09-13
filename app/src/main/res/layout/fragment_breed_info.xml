@@ -26,12 +26,12 @@
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="32dp"
         android:clickable="true"
+        android:contentDescription="@string/like_this_breed"
         android:src="@drawable/paw"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        android:contentDescription="@string/like_this_breed" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <LinearLayout
         android:id="@+id/linear_breedInfo"

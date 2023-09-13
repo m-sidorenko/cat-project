@@ -31,9 +31,8 @@ class FragmentRandomCat : Fragment(R.layout.fragment_random) {
         binding = FragmentRandomBinding.bind(view)
 
         binding.fabFragmentRandomCat.setOnClickListener {
-
             CoroutineScope(Dispatchers.IO).launch {
-                val a = viewModel.getAllLiked()
+                val a = viewModel.getAllLiked().value
                 CoroutineScope(Dispatchers.Main).launch {
                     Toast.makeText(
                         view.context, a.toString(),
@@ -42,12 +41,12 @@ class FragmentRandomCat : Fragment(R.layout.fragment_random) {
                 }
             }
 
-            if (!viewModel.breedList.value.isNullOrEmpty()) {
+            /*if (!viewModel.breedList.value.isNullOrEmpty()) {
                 val listSize = viewModel.breedList.value?.size
                 if (listSize != null) {
                     viewModel.randomCatNumber.postValue((0 until listSize).random())
                 }
-            }
+            }*/
         }
     }
 
