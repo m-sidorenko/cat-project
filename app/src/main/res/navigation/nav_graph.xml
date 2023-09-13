@@ -34,8 +34,8 @@
             android:id="@+id/action_fragmentBreedInfo_to_fragmentWebView"
             app:destination="@id/fragmentWebView" />
         <argument
-            android:name="breedNumber"
-            app:argType="integer" />
+            android:name="breed"
+            app:argType="com.msidorenko.cat_project.retrofit.api.models.BreedInfo" />
     </fragment>
     <fragment
         android:id="@+id/fragmentWebView"

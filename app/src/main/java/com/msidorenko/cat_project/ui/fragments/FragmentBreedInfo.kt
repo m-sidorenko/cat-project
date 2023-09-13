@@ -24,6 +24,12 @@ import kotlinx.coroutines.launch
 class FragmentBreedInfo : Fragment(R.layout.fragment_breed_info) {
     private val args: FragmentBreedInfoArgs by navArgs()
 
+    private fun getExceptionHandler(view: View) = CoroutineExceptionHandler { _, throwable ->
+        CoroutineScope(Dispatchers.Main).launch {
+            Toast.makeText(view.context, throwable.message, Toast.LENGTH_LONG).show()
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -33,33 +39,27 @@ class FragmentBreedInfo : Fragment(R.layout.fragment_breed_info) {
         val viewModel = (activity as CatActivity).catActivityViewModel
         val binding = FragmentBreedInfoBinding.bind(view)
 
-        val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
-            CoroutineScope(Dispatchers.Main).launch {
-                Toast.makeText(view.context, throwable.message, Toast.LENGTH_LONG).show()
-            }
-        }
-
-        val currentBreedInformation = viewModel.breedList.value?.get(args.breedNumber)
-        if (currentBreedInformation != null) {
+        val breed = viewModel.breedList.value?.find { it.id == args.breed.id }
+        if (breed != null) {
             binding.apply {
-                tvNameBreedInfo.text = currentBreedInformation.name
-                tvWeightBreedInfo.text = currentBreedInformation.weight!!.metric
-                tvOriginBreedInfo.text = currentBreedInformation.origin
-                tvDescriptionBreedInfo.text = currentBreedInformation.description
+                tvNameBreedInfo.text = breed.name
+                tvWeightBreedInfo.text = breed.weight!!.metric
+                tvOriginBreedInfo.text = breed.origin
+                tvDescriptionBreedInfo.text = breed.description
 
                 btnLikeBreedInfo.setOnClickListener {
-                    CoroutineScope(Dispatchers.IO).launch(exceptionHandler) {
-                        viewModel.likeBreed(currentBreedInformation)
+                    CoroutineScope(Dispatchers.IO).launch(getExceptionHandler(view)) {
+                        viewModel.likeBreed(breed)
                     }
                 }
 
                 // --------- BTN
                 val bundle = Bundle()
                 val urlList = listOf(
-                    currentBreedInformation.cfaUrl,
-                    currentBreedInformation.vetstreetUrl,
-                    currentBreedInformation.wikipediaUrl,
-                    currentBreedInformation.vcahospitalsUrl
+                    breed.cfaUrl,
+                    breed.vetstreetUrl,
+                    breed.wikipediaUrl,
+                    breed.vcahospitalsUrl
                 )
                 urlList.forEach { link ->
                     if (!link.isNullOrEmpty()) {
@@ -76,7 +76,7 @@ class FragmentBreedInfo : Fragment(R.layout.fragment_breed_info) {
                 val retrofit = RetrofitClient.instance
 
                 lifecycleScope.launch {
-                    val referenceImageId = currentBreedInformation.referenceImageId
+                    val referenceImageId = breed.referenceImageId
                     if (referenceImageId != null) {
                         val result = retrofit.getImageById(referenceImageId)
 

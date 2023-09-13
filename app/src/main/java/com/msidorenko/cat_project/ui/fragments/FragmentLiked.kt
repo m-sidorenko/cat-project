@@ -56,7 +56,7 @@ class FragmentLiked : Fragment(R.layout.fragment_liked) {
     private fun setupRV(view: View){
         adapterLiked.setOnItemClickListener { breedNumber ->
             val bundle = Bundle()
-            bundle.putInt("breedNumber", breedNumber)
+            bundle.putSerializable("breed", breedNumber)
             findNavController().navigate(R.id.action_fragmentLiked_to_fragmentBreedInfo, bundle)
         }
 

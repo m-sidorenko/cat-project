@@ -36,7 +36,7 @@ class AdapterSearch : RecyclerView.Adapter<AdapterSearch.ViewHolderSearchBreed>(
 
     class ViewHolderSearchBreed(itemView: View) : RecyclerView.ViewHolder(itemView.rootView)
 
-    private var onItemClickListener: (Int) -> Unit = {}
+    private var onItemClickListener: (BreedInfo) -> Unit = {}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderSearchBreed {
         return ViewHolderSearchBreed(
@@ -63,7 +63,7 @@ class AdapterSearch : RecyclerView.Adapter<AdapterSearch.ViewHolderSearchBreed>(
 
         holder.itemView.setOnClickListener {
             Log.i("MY TAG", "on click!")
-            onItemClickListener(position)
+            onItemClickListener(item)
         }
 
         val retrofit = RetrofitClient.instance
@@ -93,7 +93,7 @@ class AdapterSearch : RecyclerView.Adapter<AdapterSearch.ViewHolderSearchBreed>(
         }
     }
 
-    fun setOnItemClickListener(listener: (breedNumber: Int) -> Unit) {
+    fun setOnItemClickListener(listener: (breedInfo: BreedInfo) -> Unit) {
         onItemClickListener = listener
     }
 }

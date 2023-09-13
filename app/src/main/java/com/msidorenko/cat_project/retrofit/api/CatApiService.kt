@@ -2,7 +2,7 @@ package com.msidorenko.cat_project.retrofit.api
 
 import com.msidorenko.cat_project.retrofit.api.models.BreedInfo
 import com.msidorenko.cat_project.retrofit.api.models.Image
-import com.msidorenko.cat_project.retrofit.api.models.ImageWithShortBreedInfo
+import com.msidorenko.cat_project.retrofit.api.models.ImageWithBreedInfo
 import com.msidorenko.cat_project.retrofit.api.models.RandomCat
 import retrofit2.Call
 import retrofit2.Response
@@ -26,5 +26,5 @@ interface CatApiService {
     suspend fun getImageByBreedId(@Query("breed_ids") imageId: String): Response<List<Image>>
 
     @GET("images/{imageId}")
-    suspend fun getImageById(@Path("imageId") imageId: String): Response<ImageWithShortBreedInfo>
+    suspend fun getImageById(@Path("imageId") imageId: String): Response<ImageWithBreedInfo>
 }

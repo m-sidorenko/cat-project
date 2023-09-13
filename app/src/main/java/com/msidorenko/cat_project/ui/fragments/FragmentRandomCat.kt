@@ -4,16 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.msidorenko.cat_project.R
 import com.msidorenko.cat_project.databinding.FragmentRandomBinding
 import com.msidorenko.cat_project.ui.CatActivity
 import com.msidorenko.cat_project.ui.CatViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 
 class FragmentRandomCat : Fragment(R.layout.fragment_random) {
@@ -31,7 +27,7 @@ class FragmentRandomCat : Fragment(R.layout.fragment_random) {
         binding = FragmentRandomBinding.bind(view)
 
         binding.fabFragmentRandomCat.setOnClickListener {
-            CoroutineScope(Dispatchers.IO).launch {
+            /*CoroutineScope(Dispatchers.IO).launch {
                 val a = viewModel.getAllLiked().value
                 CoroutineScope(Dispatchers.Main).launch {
                     Toast.makeText(
@@ -39,7 +35,7 @@ class FragmentRandomCat : Fragment(R.layout.fragment_random) {
                         Toast.LENGTH_LONG
                     ).show()
                 }
-            }
+            }*/
 
             /*if (!viewModel.breedList.value.isNullOrEmpty()) {
                 val listSize = viewModel.breedList.value?.size

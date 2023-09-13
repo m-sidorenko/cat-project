@@ -3,7 +3,7 @@ package com.msidorenko.cat_project.retrofit.api.models
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-data class ImageWithShortBreedInfo(
+data class ImageWithBreedInfo(
     @SerializedName("id")
     @Expose
     val id: String? = null,

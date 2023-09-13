@@ -12,6 +12,7 @@ import coil.transform.CircleCropTransformation
 import com.msidorenko.cat_project.R
 import com.msidorenko.cat_project.databinding.ItemBinding
 import com.msidorenko.cat_project.db.LikedBreed
+import com.msidorenko.cat_project.retrofit.api.models.BreedInfo
 
 class AdapterLiked : RecyclerView.Adapter<AdapterLiked.ViewHolderLikedBreed>() {
 
@@ -32,7 +33,7 @@ class AdapterLiked : RecyclerView.Adapter<AdapterLiked.ViewHolderLikedBreed>() {
 
     class ViewHolderLikedBreed(itemView: View) : RecyclerView.ViewHolder(itemView.rootView)
 
-    private var onItemClickListener: (Int) -> Unit = {}
+    private var onItemClickListener: (BreedInfo) -> Unit = {}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderLikedBreed {
         return ViewHolderLikedBreed(
@@ -59,7 +60,7 @@ class AdapterLiked : RecyclerView.Adapter<AdapterLiked.ViewHolderLikedBreed>() {
 
         holder.itemView.setOnClickListener {
             Log.i("MY TAG", "on click!")
-            onItemClickListener(position)
+            onItemClickListener(item.breedInfo)
         }
 
         val url = item.refImageLink
@@ -70,7 +71,7 @@ class AdapterLiked : RecyclerView.Adapter<AdapterLiked.ViewHolderLikedBreed>() {
         }
     }
 
-    fun setOnItemClickListener(listener: (breedNumber: Int) -> Unit) {
+    fun setOnItemClickListener(listener: (breedNumber: BreedInfo) -> Unit) {
         onItemClickListener = listener
     }
 }

@@ -2,6 +2,7 @@ package com.msidorenko.cat_project.retrofit.api.models
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class BreedInfo(
     @SerializedName("weight")
@@ -151,8 +152,7 @@ data class BreedInfo(
     @SerializedName("reference_image_id")
     @Expose
     val referenceImageId: String? = null,
-) {
-
+) : Serializable {
     data class Weight(
         @SerializedName("imperial")
         @Expose

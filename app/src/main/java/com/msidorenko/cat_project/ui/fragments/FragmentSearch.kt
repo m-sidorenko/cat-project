@@ -37,17 +37,16 @@ class FragmentSearch : Fragment(R.layout.fragment_search) {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_search, container, false)
     }
 
-    private fun setupRV(view: View){
-        searchAdapter.setOnItemClickListener { breedNumber ->
+    private fun setupRV(view: View) {
+        searchAdapter.setOnItemClickListener { breedInfo ->
             val bundle = Bundle()
-            bundle.putInt("breedNumber", breedNumber)
+            bundle.putSerializable("breed", breedInfo)
             findNavController().navigate(R.id.action_fragmentSearch_to_fragmentBreedInfo, bundle)
         }
 
